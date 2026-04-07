@@ -16,7 +16,7 @@ Merci de contribuer à ce projet ! Voici les règles à respecter.
 
 1. **Crée une branche** à partir de `main`
    ```bash
-   git checkout -b feature/ma-fonctionnalite
+   git checkout -b GIT-**_ma-fonctionnalite
    ```
 
 2. **Fais tes modifications** puis commite avec un message clair
