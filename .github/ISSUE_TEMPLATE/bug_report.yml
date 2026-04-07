@@ -3,7 +3,7 @@ description: Signaler un bug.
 title: "[Bug]: "
 labels: ["bug"]
 body:
-  - type: markdownhttps://github.com/Z16Esgi/EsgiProjetGit/edit/main/.github/ISSUE_TEMPLATE/bug_report.yml
+  - type: markdown
     attributes:
       value: |
         Merci de prendre le temps de remplir ce rapport de bug !
