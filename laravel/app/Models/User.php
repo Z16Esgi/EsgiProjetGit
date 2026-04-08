@@ -91,4 +91,22 @@ class User extends Authenticatable
 
         return $client;
     }
+
+    public static function enregistrerClient($nom, $prenom, $age, $email, $tel, $mdp)
+    {
+        $bd = self::getConnexion();
+
+        $sql = "INSERT INTO client (nom, prenom, email, age, tel, mdp) VALUES (:nom, :prenom, :age, :email, :tel, :mdp)";
+        $st = $bd->prepare($sql);
+        $st->execute([
+            ':nom'    => $nom,
+            ':prenom' => $prenom,
+            ':email'  => $email,
+            ':age'    => $age,
+            ':tel'    => $tel,
+            ':mdp'    => $mdp,
+        ]);
+
+        $st->closeCursor();
+    }
 }

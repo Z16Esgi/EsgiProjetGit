@@ -42,5 +42,37 @@ Class ClientController extends Controller {
     public function AfficherAccueil() {
         return view('ConnecterClient');
     }
+
+    public function Inscription(Request $request)
+    {
+        try {
+            \App\Models\User::enregistrerClient(
+                $request->input('nom'),
+                $request->input('prenom'),
+                $request->input('email'),
+                $request->input('age'),
+                $request->input('tel'),
+                $request->input('mdp')
+            );
+    
+            return redirect('Client/Connexion')->with('success', 'Inscription réussie !');
+    
+        } catch (\Exception $e) {
+            dd("Erreur : " . $e->getMessage()); 
+        }
+    }
+
+    public function Formulaire() {
+        return view('Inscription');
+    }
+    
+
+    public function ConsulterProfil (){
+        return view ('ConsulterProfil');
+    }
+    public function ReserverSejour(Request $request){
+        $date = $request->input('date_sejour');
+        return view('Reservation', ['date' => $date]);
+    }
 }
 ?>
