@@ -20,3 +20,5 @@ Route::get('/Client/Inscription', [ClientController::class, 'Formulaire']);
 Route::get('/Client/Profil',[ClientController::class,'ConsulterProfil']);
 Route::get('/Client/Reservation',[ClientController::class,'ReserverSejour']);
 Route::get('/Client/ReserverSejour',[ClientController::class,'ReservationSejour']);
+Route::get('/Client/AnnulerReservation',[ClientController::class,'AnnulerReservation']);
+Route::get('/Client/ConsulterSejour',[ClientController::class,'ConsulterSejour']);

@@ -17,4 +17,10 @@ Class ResponsableController extends Controller {
 
         return view ('ProgrammerSejour');
     }
+    public function SuivreReservation (){
+        return view ('SuivreReservation');
+    }
+    public function AnnulerSejour (){
+        return view ('AnnulerSejour');
+    }
 }
