@@ -1,0 +1,36 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+      - "GIT-*"
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          if [ -f laravel/package.json ]; then
+            cd laravel
+            npm install
+          else
+            echo "No laravel/package.json found"
+            exit 1
+          fi
+
+      - name: Run linter
+        run: |
+          cd laravel
+          npm run lint
