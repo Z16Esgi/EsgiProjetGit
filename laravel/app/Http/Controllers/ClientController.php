@@ -50,4 +50,21 @@ class ClientController extends Controller {
     public function AfficherAccueil() {
         return view('ConnecterClient');
     }
+    public function ConsulterProfil (){
+        return view ('ConsulterProfil');
+    }
+    public function ReserverSejour(Request $request){
+        $date = $request->input('date_sejour');
+        return view('Reservation', ['date' => $date]);
+    }
+    public function ReservationSejour (){
+        return view ('ReserverSejour');
+    }
+    public function AnnulerReservation(){
+        return view ('AnnulerReservation');
+    }
+    public function ConsulterSejour(){
+        return view ('ConsulterSejour');
+    }
+
 }
