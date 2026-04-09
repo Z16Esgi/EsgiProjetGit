@@ -10,7 +10,7 @@ create Table client (
     age int,
     email varchar(200),
     tel int,
-    mdp varchar (155500),
+    mdp varchar (100),
 	primary key ( id )
 );
 
