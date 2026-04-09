@@ -1,0 +1,87 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/production/nginx/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - laravel-storage-production:/var/www/storage:ro
+    networks:
+      - laravel-production
+    depends_on:
+      php-fpm:
+        condition: service_healthy
+    command: ["nginx", "-g", "daemon off;"]
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: ./docker/common/php-fpm/Dockerfile
+      target: production
+    restart: unless-stopped
+    volumes:
+      - laravel-storage-production:/var/www/storage
+    env_file:
+      - .env
+    networks:
+      - laravel-production
+    healthcheck:
+      test: ["CMD-SHELL", "php -r 'echo 1;' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  php-cli:
+    build:
+      context: .
+      dockerfile: ./docker/php-cli/Dockerfile
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+    networks:
+      - laravel-production
+
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    user: postgres
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data-production:/var/lib/postgresql
+    networks:
+      - laravel-production
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    networks:
+      - laravel-production
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  laravel-production:
+
+volumes:
+  postgres-data-production:
+  laravel-storage-production:
