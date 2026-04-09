@@ -1,0 +1,118 @@
+
+.db {
+	word-spacing: 400px;
+	margin-left : 0px;
+	margin-top : 0px;
+	border-style : double ;
+	border-width : medium;
+	display: flex ;
+	position: absolute;
+	top: 0%;
+	left:0% ;
+	right: 0%;
+	flex-direction : row;
+	flex-wrap : wrap;
+	justify-content: space-between;
+	background-color : rgb(59, 165, 236);
+	padding: 10px;
+	
+	}
+.db a[href="/Client/Reservation"]:hover {
+	font-weight: bold;
+}
+.db a[href="/Client/Profil"]:hover {
+	font-weight: bold;
+}
+.db a[href="/Client/ConsulterSejour"]:hover {
+	font-weight: bold;
+}
+.db a[href="/Client/ReserverSejour"]:hover {
+	font-weight: bold;
+}
+.db a[href="/Client/Connecter"]:hover {
+	font-weight: bold;
+}
+.db a[href="/"]:hover {
+	font-weight: bold;
+}
+.db a[href="/Client/Connexion"]:hover {
+	font-weight: bold;
+}
+
+
+
+.imagePrincipale{
+	width: 95%;
+	background-size: cover;
+	background-position: center;
+	color: white;
+	height: 90vh;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.titre {
+	width: 98.3%;
+    background-color : rgb(39, 117, 190);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative; /* S'assure qu'elle suit l'image */
+    margin-top: -5px; /* Supprime l'espace entre l'image et la barre */
+
+}
+
+.voyages {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70vh;
+	gap: 20px;
+}
+
+.voyage {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 12px;
+}
+
+.photoAvion {
+	width: 400px;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 12px;
+	display: block;
+	transition: all 0.3s ease;
+}
+
+.photoAvion:hover{
+	transform: scale(1.03);
+	filter: brightness(1);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2)
+}
+
+.voyage-text {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.6);
+	color: white;
+	text-align: center;
+	padding: 10px;
+	opacity: 0;
+	transition: opacity 0.3 ease;
+}
+
+
+.voyage:hover .voyage-text {
+opacity: 1;
+transform: scale(1.05);
+}
