@@ -19,21 +19,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+       
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
-        run: |
-          if [ -f laravel/package.json ]; then
-            cd laravel && npm install
-          elif [ -f package.json ]; then
-            npm install
-          fi
+     
+        working-directory: ./laravel 
+        run: npm install
 
       - name: Run linter
-        run: |
-          if [ -f laravel/package.json ]; then
-            cd laravel && npm run lint
-          elif [ -f package.json ]; then
-            npm run lint
-          else
-            echo "No package.json found" && exit 1
-          fi
+        working-directory: ./laravel
+        run: npm run lint
